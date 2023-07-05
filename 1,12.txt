@@ -1,0 +1,30 @@
+function printBitcoinPrice() {
+    /**
+     * This function prints the current Bitcoin price.
+     * It fetches the price from an API and logs it to the console.
+     */
+
+    // Import necessary libraries or modules
+    const fetch = require('node-fetch');
+
+    // Define the API endpoint for Bitcoin price
+    const apiUrl = 'https://api.coindesk.com/v1/bpi/currentprice/BTC.json';
+
+    // Fetch the Bitcoin price from the API
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            // Extract the price from the API response
+            const price = data.bpi.USD.rate;
+
+            // Print the Bitcoin price
+            console.log(`The current Bitcoin price is $${price}`);
+        })
+        .catch(error => {
+            // Log any errors that occur during the API request
+            console.error('Error fetching Bitcoin price:', error);
+        });
+}
+
+// Call the function to print the Bitcoin price
+printBitcoinPrice();
